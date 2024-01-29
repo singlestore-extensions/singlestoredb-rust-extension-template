@@ -1,6 +1,6 @@
-# {{cookiecutter.project_slug}}
+# {{cookiecutter.project_name}}
 
-The {{cookiecutter.project_slug}} SingleStore DB extension, written in Rust.
+The {{cookiecutter.project_name}} SingleStore DB extension, written in Rust.
 
 ## Building
 
@@ -25,7 +25,7 @@ They are run against the `singlestoredb-dev-image`.
 In order to run the tests
 
 1. Install Python 3
-2. Install `singlestoredb` and `pytest` (and optionally `pytest-xdist`)
+2. Install `singlestoredb[pytest]` (and optionally `pytest-xdist`) using pip
 3. Set the `SINGLESTORE_LICENSE` environment variable
 4. Run the `pytest` command
 
