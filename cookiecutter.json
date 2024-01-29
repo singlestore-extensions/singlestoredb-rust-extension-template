@@ -1,4 +1,5 @@
 {
     "project_name": "Foobar Extension",
-    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}"
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_') }}",
+    "project_pascal_case": "{{ ''.join(term.capitalize() for term in cookiecutter.project_slug.split('_')) }}"
 }

@@ -1,5 +1,3 @@
-use chrono::NaiveDateTime;
-
 wit_bindgen_rust::export!("{{cookiecutter.project_slug}}.wit");
 
 struct {{cookiecutter.project_slug.capitalize()}};
