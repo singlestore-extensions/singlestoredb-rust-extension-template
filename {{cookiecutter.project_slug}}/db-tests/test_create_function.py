@@ -6,8 +6,8 @@ from singlestoredb.connection import Cursor
 def test_create_functions(singlestoredb_tempdb: Cursor):
     cursor = singlestoredb_tempdb
 
-    wasm = Path.cwd() / "target" / "wasm32-wasi" / "debug" / "{{extension_name}}.wasm"
-    wit = Path.cwd() / "{{extension_name}}.wit"
+    wasm = Path.cwd() / "target" / "wasm32-wasi" / "debug" / "{{cookiecutter.project_slug}}.wasm"
+    wit = Path.cwd() / "{{cookiecutter.project_slug}}.wit"
 
     assert wasm.exists(), "Make sure to build the Wasm library before running tests"
 

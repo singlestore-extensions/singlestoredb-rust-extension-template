@@ -1,5 +1,5 @@
 [package]
-name = "{{extension_name}}"
+name = "{{cookiecutter.project_slug}}"
 version = "0.1.0"
 edition = "2018"
 

@@ -21,25 +21,25 @@ jobs:
 
     - name: Build Extension
       run: |
-        cp ./target/wasm32-wasi/release/{{extension_name}}.wasm ./{{extension_name}}.wasm
-        tar cvf {{extension_name}}.tar {{extension_name}}.sql {{extension_name}}.wasm {{extension_name}}.wit 
+        cp ./target/wasm32-wasi/release/{{cookiecutter.project_slug}}.wasm ./{{cookiecutter.project_slug}}.wasm
+        tar cvf {{cookiecutter.project_slug}}.tar {{cookiecutter.project_slug}}.sql {{cookiecutter.project_slug}}.wasm {{cookiecutter.project_slug}}.wit 
 
     - name: Select Release Version
       id: versioning
       run: |
-        VERSION=$(cargo metadata --format-version 1 | jq -r '.packages[] | select(.name=="{{extension_name}}") .version')
+        VERSION=$(cargo metadata --format-version 1 | jq -r '.packages[] | select(.name=="{{cookiecutter.project_slug}}") .version')
         echo "Version: $VERSION"
         echo "release_version=$VERSION" >> "$GITHUB_OUTPUT"
 
     - name: Release
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        title: "{{extension_name}} ${{ "{{" }} steps.versioning.outputs.release_version {{ "}}" }}"
+        title: "{{cookiecutter.project_slug}} ${{ "{{" }} steps.versioning.outputs.release_version {{ "}}" }}"
         repo_token: "${{ "{{" }} secrets.GITHUB_TOKEN {{ "}}" }}"
         automatic_release_tag: latest
         prerelease: false
         files: |
-          {{extension_name}}.tar
-          {{extension_name}}.sql
-          {{extension_name}}.wasm
-          {{extension_name}}.wit
+          {{cookiecutter.project_slug}}.tar
+          {{cookiecutter.project_slug}}.sql
+          {{cookiecutter.project_slug}}.wasm
+          {{cookiecutter.project_slug}}.wit
