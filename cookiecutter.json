@@ -1,4 +1,5 @@
 {
-    "repo_name": "extension",
-    "extension_name": "foo"
+    "repo_name": "singlestoredb-foo",
+    "extension_name": "foo",
+    "extension_name_uppercase": "Foo"
 }
