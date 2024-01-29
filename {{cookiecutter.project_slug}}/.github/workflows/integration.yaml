@@ -27,7 +27,7 @@ jobs:
   db-tests:
     name: Run db tests
     runs-on: ubuntu-latest
-    environment: Base
+    environment: Testing
     steps:
     - uses: actions/checkout@v3
 
