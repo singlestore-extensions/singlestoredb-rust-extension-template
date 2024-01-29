@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  unit-tests:
+    name: Run unit tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Rust
+      run: |
+        set -e
+        rustup update stable --no-self-update
+        rustup default stable
+
+    - name: Run tests
+      run: cargo test
+
+  db-tests:
+    name: Run db tests
+    runs-on: ubuntu-latest
+    environment: Base
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install Rust (with Wasm targets)
+      run: |
+        set -e
+        rustup update stable --no-self-update
+        rustup default stable
+        rustup target add wasm32-wasi
+        rustup target add wasm32-unknown-unknown
+
+    - name: Build Wasm
+      run: cargo build --target wasm32-wasi
+
+    - name: Setup db tests
+      run: pip install singlestoredb[pytest]
+
+    - name: Run db tests
+      env:
+        SINGLESTORE_LICENSE: ${{ "{{" }} secrets.SINGLESTORE_LICENSE {{ "}}" }}
+      run: pytest
+
